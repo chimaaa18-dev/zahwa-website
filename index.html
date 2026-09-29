@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffcfe0">
+<title>Zahwa Denija Nerazurri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<style>
+/* ===== 1. CSS ===== */
+:root{
+  --bg:#ffe6ee;      /* latar utama (pink muda) */
+  --bg2:#ffcfe0;     /* latar bagian bergantian */
+  --rose:#e8457c;    /* aksen */
+  --line:#d4638d;    /* bingkai & garis */
+  --deep:#b02a5c;    /* teks aksen */
+  --ink:#5a1631;     /* teks utama */
+  --paper:#fff7fa;   /* kertas kartu */
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --script:'Pinyon Script', 'Segoe Script', cursive;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.25rem;line-height:1.55}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.grad{background:linear-gradient(180deg,#f0367a,#d81b60 60%,#a3124a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{background:transparent;border:1.5px solid var(--line);color:var(--deep);padding:9px 26px;letter-spacing:.1em;transition:background .3s,color .3s}
+.btn:hover{background:var(--line);color:#fff}
+
+/* --- Hero: dinding foto --- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;background:var(--bg2)}
+.wall{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,1fr);gap:6px;padding:6px}
+.tile{overflow:hidden;border-radius:4px;animation:pop .9s both}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.veil{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(255,244,248,.95) 0%,rgba(255,244,248,.88) 34%,rgba(255,170,205,.4) 82%)}
+.hero-in{position:relative;padding:32px 20px}
+.pre{font-style:italic;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--deep);animation:up 1.2s 1.6s both}
+.hero h1{font-family:var(--script);font-weight:400;font-size:clamp(4rem,15vw,9rem);line-height:1.1;padding:.05em .15em;animation:up 1.6s 1.8s both}
+.sub{font-style:italic;font-size:clamp(1.1rem,2.8vw,1.4rem);min-height:1.6em;animation:up 1.2s 2.2s both}
+.cta{display:inline-block;margin-top:30px;padding:12px 38px;border:1.5px solid var(--line);color:var(--deep);text-decoration:none;letter-spacing:.14em;font-size:1rem;background:rgba(255,255,255,.6);animation:up 1.2s 2.5s both;transition:background .3s,color .3s}
+.cta:hover{background:var(--line);color:#fff}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* --- Bagian umum --- */
+section.s{padding:88px 20px}
+section.alt{background:linear-gradient(180deg,var(--bg),var(--bg2) 16%,var(--bg2) 84%,var(--bg))}
+.s > h2{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,7vw,4rem);text-align:center;margin-bottom:6px}
+.s > .lead{text-align:center;font-style:italic;color:var(--deep);margin-bottom:42px}
+.wrap{max-width:1100px;margin:0 auto}
+
+/* --- Kartu --- */
+.stage{perspective:2000px;max-width:960px;margin:0 auto}
+.card{position:relative;min-height:520px;background:var(--paper);border-radius:4px;box-shadow:0 40px 70px -30px rgba(150,30,80,.5),0 0 0 1px var(--line)}
+.inside{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:center;padding:56px;min-height:520px}
+.inside::before{content:"";position:absolute;inset:14px;border:1px solid var(--line);pointer-events:none}
+.inside::after{content:"";position:absolute;inset:20px;border:1px solid rgba(212,99,141,.4);pointer-events:none}
+.frame{padding:10px;background:#fff;box-shadow:0 0 0 2px var(--line),0 0 0 7px var(--bg),0 0 0 8px rgba(212,99,141,.55),0 20px 26px -16px rgba(120,20,60,.45)}
+.frame img{display:block;width:100%;height:auto;cursor:zoom-in}
+.hero-photo{aspect-ratio:4/5}
+.hero-photo img{height:100%;object-fit:cover}
+.words .to{font-family:var(--script);font-size:clamp(2.2rem,5vw,3rem);line-height:1.2;margin-bottom:10px}
+.words .msg{font-style:italic;font-weight:500;font-size:clamp(1.3rem,3vw,1.65rem);line-height:1.5;white-space:pre-wrap}
+.words .from{font-family:var(--script);font-size:2.3rem;text-align:right;color:#a3244a;margin-top:18px}
+.cover{position:absolute;inset:0;border:0;border-radius:4px;color:#fff;transform-origin:left center;
+  background:radial-gradient(circle at 30% 20%,#ff8fb5,#d8336f 75%);box-shadow:0 0 0 1px var(--line);
+  transition:transform 1.3s cubic-bezier(.65,.05,.2,1);backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:30px}
+.cover::before{content:"";position:absolute;inset:14px;border:1.5px solid rgba(255,255,255,.9);pointer-events:none}
+.cover::after{content:"";position:absolute;inset:23px;border:1px solid rgba(255,255,255,.55);pointer-events:none}
+.cover .nm{font-family:var(--script);font-size:clamp(2.8rem,9vw,4.6rem);line-height:1.15;text-shadow:0 2px 10px rgba(120,20,60,.4)}
+.cover .hint{font-style:italic;font-size:1.15rem}
+.cover svg{width:88px;height:88px;filter:drop-shadow(0 6px 8px rgba(120,20,60,.5));transition:transform .4s}
+.cover:hover svg{transform:scale(1.08) rotate(-4deg)}
+.card.open .cover{transform:rotateY(-174deg);pointer-events:none}
+.tools{display:flex;justify-content:center;margin-top:30px}
+
+/* --- Pita foto bergerak --- */
+.marq{overflow:hidden;padding:10px 0}
+.track{display:flex;width:max-content;animation:slide 70s linear infinite}
+.track.rev{animation-direction:reverse}
+.marq:hover .track{animation-play-state:paused}
+.track img{height:180px;width:auto;margin-right:14px;border:5px solid #fff;border-radius:4px;box-shadow:0 12px 18px -12px rgba(120,20,60,.6);display:block}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* --- Galeri mosaik --- */
+.masonry{columns:4 210px;column-gap:26px}
+.masonry .frame{break-inside:avoid;margin:0 0 30px;transition:transform .3s}
+.masonry .frame:hover{transform:translateY(-4px) rotate(-.6deg)}
+.capt{display:block;text-align:center;font-style:italic;color:#7a2a4d;padding-top:8px;font-size:1.1rem}
+.capt:empty{display:none}
+.capin{display:none}
+body.editing .capin{display:block;width:100%}
+body.editing .capt{display:none}
+.capin{margin-top:8px;padding:6px 8px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:1rem}
+.ph img{cursor:pointer}
+.acts{display:none;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+body.editing .acts{display:flex}
+.acts button{border:0;background:none;color:var(--deep);font-size:.95rem;text-decoration:underline;padding:2px}
+body.editing .rp,body.editing .hero-photo img,body.editing .masonry img{cursor:pointer}
+body.editing .track{animation-play-state:paused}
+#hint{margin-top:14px;font-size:.95rem;color:var(--deep)}
+
+/* --- Panel edit --- */
+#editBtn{position:fixed;right:18px;bottom:18px;z-index:20;background:var(--bg);box-shadow:0 8px 20px rgba(150,30,80,.35)}
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);z-index:30;background:#fff0f5;border-left:1.5px solid var(--line);box-shadow:-20px 0 40px -20px rgba(150,30,80,.4);
+  padding:24px 22px 40px;overflow-y:auto;transform:translateX(102%);transition:transform .45s ease;font-size:1.05rem}
+#panel.open{transform:none}
+#panel h3{font-family:var(--script);font-weight:400;font-size:2.4rem;color:var(--deep);margin-bottom:12px}
+#panel label{display:block;margin:14px 0 4px;color:var(--deep)}
+#panel input[type=text],#panel input[type=date],#panel textarea{width:100%;padding:9px 11px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:1.05rem}
+#panel textarea{min-height:110px;resize:vertical}
+#panel .btn{margin:16px 8px 0 0}
+#warn{margin-top:14px;font-size:.95rem;color:#a3244a}
+
+/* --- Lightbox --- */
+#lb{position:fixed;inset:0;z-index:40;background:rgba(90,22,49,.94);display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px}
+#lb.show{display:flex}
+#lb img{max-width:min(90vw,900px);max-height:76vh;box-shadow:0 0 0 2px #fff,0 0 0 8px var(--line),0 0 0 9px rgba(255,255,255,.5)}
+#lb p{font-style:italic;color:#ffd0e0}
+#lb .nav{position:absolute;top:50%;width:52px;height:52px;margin-top:-26px;border-radius:50%;border:1.5px solid #ffd0e0;background:rgba(255,255,255,.12);color:#fff;font-size:1.6rem}
+#lb .nav:hover{background:rgba(255,255,255,.3)}
+#prev{left:14px}#next{right:14px}
+#lbClose{position:absolute;top:14px;right:16px;border:0;background:none;color:#fff;font-size:2rem}
+
+footer{text-align:center;padding:40px 20px 90px;font-style:italic;color:var(--deep)}
+
+@media (max-width:700px){
+  .wall{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(6,1fr)}
+  .inside{grid-template-columns:1fr;padding:44px 30px;gap:32px}
+  .hero-photo{max-width:290px;margin:0 auto;width:100%}
+  section.s{padding:64px 16px}
+  .track img{height:130px}
+  .masonry{column-gap:16px}
+  #prev{left:6px}#next{right:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .tile,.pre,.hero h1,.sub,.cta{animation:none}
+  .track{animation:none}.marq{overflow-x:auto}
+  .cover{transition:none}
+}
+</style>
+</head>
+
+<body>
+<!-- ===== 2. HTML ===== -->
+<header class="hero">
+  <div class="wall" id="wall" aria-hidden="true"></div>
+  <div class="veil"></div>
+  <div class="hero-in">
+    <p class="pre">Setiap foto ini adalah satu alasan aku untuk terus bersyukur, untuk</p>
+    <h1 class="grad" id="hName"></h1>
+    <p class="sub" id="hSub"></p>
+    <a class="cta" href="#kartu">BUKA KARTUNYA</a>
+  </div>
+</header>
+
+<section class="s alt" id="kartu">
+  <h2 class="grad">Surat untukmu</h2>
+  <p class="lead">Dibuka yaaa cantikkk</p>
+  <div class="stage">
+    <div class="card" id="card">
+      <div class="inside">
+        <figure class="frame hero-photo" id="heroPhoto"></figure>
+        <div class="words">
+          <p class="to grad" id="outTo"></p>
+          <p class="msg" id="outMsg"></p>
+          <p class="from" id="outFrom"></p>
+        </div>
+      </div>
+      <button class="cover" id="cover" aria-label="Buka kartu">
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <circle cx="40" cy="40" r="35" fill="#b3195a"/>
+          <circle cx="40" cy="40" r="28" fill="none" stroke="#ffd6e4" stroke-width="1.5"/>
+          <path d="M40 55C21 42 23 27 33 27c4 0 7 3 7 6 0-3 3-6 7-6 10 0 12 15-7 28z" fill="#ffe3ee"/>
+        </svg>
+        <span class="nm" id="cvName"></span>
+        <span class="hint">HAPPY MY GIRL DAY, KAMIS 1 OKTOBER 2026</span>
+      </button>
+    </div>
+    <div class="tools"><button class="btn" id="toggle">TUTUP KARTU</button></div>
+  </div>
+</section>
+
+<section class="s" aria-label="Pita foto">
+  <h2 class="grad">Kenangan yang berjalan</h2>
+  <p class="lead">Arahkan kursor ke foto untuk menghentikan sejenak</p>
+  <div class="marq" aria-hidden="true"><div class="track" id="tr1"></div></div>
+  <div class="marq" aria-hidden="true"><div class="track rev" id="tr2"></div></div>
+</section>
+
+<section class="s alt" id="galeri">
+  <h2 class="grad">Semua momen kita</h2>
+  <p class="lead" id="count"></p>
+  <div class="wrap"><div class="masonry" id="masonry"></div></div>
+</section>
+
+<footer id="foot"></footer>
+
+<button class="btn" id="editBtn">UBAH ISI</button>
+
+<aside id="panel" aria-label="Ubah isi kartu">
+  <h3>Isi kartumu</h3>
+  <label for="iName">Nama dia</label><input type="text" id="iName" maxlength="30">
+  <label for="iFrom">Dari</label><input type="text" id="iFrom" maxlength="30">
+  <label for="iDate">Tanggal jadian (untuk hitung hari)</label><input type="date" id="iDate">
+  <label for="iMsg">Kata-kata di kartu</label><textarea id="iMsg" maxlength="700"></textarea>
+  <button class="btn" id="addBtn">TAMBAH FOTO</button>
+  <button class="btn" id="randBtn">KATA ROMANTIS</button>
+  <button class="btn" id="clrBtn">HAPUS SEMUA FOTO</button>
+  <button class="btn" id="closeBtn">SELESAI</button>
+  <p id="hint">Selama panel ini terbuka, ketuk foto mana pun (di dinding, pita, atau galeri) untuk menggantinya. Di galeri ada juga tombol ganti, jadikan utama, dan hapus.</p>
+  <p id="warn" role="status"></p>
+  <input type="file" id="file" accept="image/*" multiple hidden>
+  <input type="file" id="fileOne" accept="image/*" hidden>
+</aside>
+
+<div id="lb" role="dialog" aria-label="Foto">
+  <button id="lbClose" aria-label="Tutup">&times;</button>
+  <button class="nav" id="prev" aria-label="Foto sebelumnya">&#8249;</button>
+  <img alt="">
+  <p id="lbCap"></p>
+  <button class="nav" id="next" aria-label="Foto berikutnya">&#8250;</button>
+</div>
+
+<script>
+/* ===== 3. JavaScript ===== */
+const KEY = 'kartu-galeri-v3';
+const $ = id => document.getElementById(id);
+const defaults = {
+  name: 'Sayang', from: 'Aku', date: '',
+  msg: 'Terima kasih sudah menjadi tempat pulang paling tenang.\nDi antara semua hal yang rumit, kamu selalu jadi yang paling sederhana untuk kucintai.',
+  photos: []   // { src, cap }
+};
+const quotes = [
+  'Kalau ada satu hal yang ingin kuulang seribu kali, itu adalah bertemu denganmu.',
+  'Aku tidak perlu tempat yang jauh, cukup di sampingmu.',
+  'Kamu bukan hanya bagian dari hariku, kamu alasan aku ingin hari-hariku baik.',
+  'Terima kasih sudah sabar, sudah tinggal, dan sudah percaya.'
+];
+
+let state = load();
+function load(){
+  try { return Object.assign({}, defaults, JSON.parse(localStorage.getItem(KEY)) || {}); }
+  catch(e){ return Object.assign({}, defaults); }
+}
+function save(){
+  try { localStorage.setItem(KEY, JSON.stringify(state)); $('warn').textContent = ''; }
+  catch(e){ $('warn').textContent = 'Penyimpanan browser penuh. Foto tetap tampil sekarang, tetapi tidak tersimpan setelah halaman ditutup. Hapus beberapa foto agar muat.'; }
+}
+const editing = () => document.body.classList.contains('editing');
+
+/* Kotak hiasan: tiap nomor punya warna, bentuk, ukuran, dan kata yang berbeda.
+   Dipakai untuk mengisi tempat yang belum ada fotonya, jadi tidak ada foto yang diulang. */
+const WORDS = ['Sayang','Selamanya','Kamu','Rindu','Peluk','Bahagia','Cinta','Bersama','Tenang','Pulang','Hangat','Senyum','Mimpi','Setia','Manis','Rumah','Janji','Doa'];
+const SHAPES = [
+  "<path d='M50 68C30 54 32 38 42 38c4 0 8 3 8 7 0-4 4-7 8-7 10 0 12 16-8 30z' fill='#fff' fill-opacity='.9'/>",
+  "<path d='M50 37L54.1 47.3L65.2 48.1L56.7 55.2L59.4 65.9L50 60L40.6 65.9L43.3 55.2L34.8 48.1L45.9 47.3Z' fill='#fff' fill-opacity='.9'/>",
+  "<circle cx='50' cy='53' r='14' fill='none' stroke='#fff' stroke-width='4' stroke-opacity='.9'/>",
+  "<g fill='#fff' fill-opacity='.9'><circle cx='50' cy='44' r='7'/><circle cx='58.6' cy='50.2' r='7'/><circle cx='55.3' cy='60.3' r='7'/><circle cx='44.7' cy='60.3' r='7'/><circle cx='41.4' cy='50.2' r='7'/></g><circle cx='50' cy='53' r='5' fill='#ffd36e'/>",
+  "<path d='M50 36L58 53L50 70L42 53Z' fill='#fff' fill-opacity='.9'/>"
+];
+function deco(i){
+  const P = [['#ffb3cd','#ff7fa8'],['#ffd0e0','#f78fb3'],['#ffc2d6','#ee7aa2'],['#ffe0ec','#ff9fc0'],['#ffa8c8','#ff86ae'],['#ffd6e7','#ff8ab3']];
+  const H = [100,125,82,112,138,92];
+  const c = P[i % 6], h = H[(i + 2) % 6], dy = h / 2 - 59;
+  const svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 " + h + "'>" +
+    "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='" + c[0] + "'/><stop offset='1' stop-color='" + c[1] + "'/></linearGradient></defs>" +
+    "<rect width='100' height='" + h + "' fill='url(#g)'/>" +
+    "<g transform='translate(0 " + dy + ")'>" + SHAPES[i % 5] + "</g>" +
+    "<text x='50' y='" + (h / 2 + 30) + "' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='12' fill='#5a1631' fill-opacity='.85'>" + WORDS[i % WORDS.length] + "</text></svg>";
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+/* Menyebar foto asli secara merata di n tempat; sisanya diisi kotak hiasan yang berbeda-beda */
+function spread(items, n, off){
+  const m = items.length, out = [];
+  if (m >= n){
+    for (let i = 0; i < n; i++) out.push(items[Math.floor(i * m / n)]);
+    return out;
+  }
+  const pos = {};
+  items.forEach((it, k) => { pos[Math.floor((k + .5) * n / m)] = it; });
+  let d = off;
+  for (let i = 0; i < n; i++) out.push(pos[i] || { src: deco(d++), idx: null });
+  return out;
+}
+
+function el(tag, cls, text){
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text) e.textContent = text;
+  return e;
+}
+function pic(src, alt){ const i = new Image(); i.src = src; i.alt = alt || ''; i.decoding = 'async'; return i; }
+
+function daysText(){
+  if (!state.date) return 'Selamanya dimulai dari satu hari yang sama';
+  const d = Math.floor((Date.now() - new Date(state.date + 'T00:00:00')) / 864e5);
+  return d >= 0 ? 'Sudah ' + d.toLocaleString('id-ID') + ' hari kita bersama' : 'Menghitung hari menuju kita';
+}
+
+/* Ganti satu foto tertentu tanpa mengubah yang lain */
+let repIdx = -1;
+function replaceAt(i){ repIdx = i; $('fileOne').click(); }
+function tap(idx){
+  if (!editing()) return;
+  if (idx === null || idx === undefined) $('file').click();
+  else replaceAt(idx);
+}
+function askPhotos(){ openPanel(); $('file').click(); }
+
+function render(){
+  const real = state.photos.length > 0;
+  const items = state.photos.map((p, i) => ({ src: p.src, idx: i }));
+
+  $('hName').textContent = state.name;
+  $('hSub').textContent = daysText();
+  $('cvName').textContent = 'Untuk ' + state.name;
+  $('outTo').textContent = 'Untuk ' + state.name + ',';
+  $('outMsg').textContent = state.msg;
+  $('outFrom').textContent = state.from;
+  $('foot').textContent = state.from ? 'Dengan seluruh sayang, ' + state.from : '';
+  $('count').textContent = real ? state.photos.length + ' foto, dan masih akan bertambah' : 'Ini contoh tampilannya. Tekan "Ubah isi" lalu "Tambah foto" untuk memasukkan fotomu';
+
+  // dinding foto di hero: 18 kotak, tiap foto muncul sekali
+  const wall = $('wall'); wall.innerHTML = '';
+  spread(items, 18, 0).forEach((t, i) => {
+    const d = el('div', 'tile' + (t.idx !== null ? ' rp' : ''));
+    d.style.animationDelay = (0.1 + i * 0.07) + 's';
+    d.appendChild(pic(t.src));
+    d.addEventListener('click', () => tap(t.idx));
+    wall.appendChild(d);
+  });
+
+  // foto utama di kartu (foto pertama)
+  const hp = $('heroPhoto'); hp.innerHTML = '';
+  const first = pic(real ? state.photos[0].src : deco(3), real ? (state.photos[0].cap || 'Foto utama') : '');
+  first.addEventListener('click', () => {
+    if (!real) askPhotos();
+    else if (editing()) replaceAt(0);
+    else openLb(0);
+  });
+  hp.appendChild(first);
+
+  // pita foto: baris atas memakai foto urutan genap, baris bawah urutan ganjil
+  const ev = items.filter((_, i) => i % 2 === 0), od = items.filter((_, i) => i % 2 === 1);
+  [['tr1', ev, 6], ['tr2', od, 12]].forEach(([id, arr, off]) => {
+    const n = Math.max(8, Math.min(arr.length, 16));
+    const row = spread(arr, n, off);
+    const tr = $(id); tr.innerHTML = '';
+    row.concat(row).forEach(t => {
+      const im = pic(t.src);
+      if (t.idx !== null) im.className = 'rp';
+      im.addEventListener('click', () => tap(t.idx));
+      tr.appendChild(im);
+    });
+  });
+
+  // galeri mosaik
+  const m = $('masonry'); m.innerHTML = '';
+  if (real){
+    state.photos.forEach((p, i) => {
+      const fig = el('figure', 'frame');
+      const img = pic(p.src, p.cap || 'Foto ' + (i + 1));
+      img.addEventListener('click', () => editing() ? replaceAt(i) : openLb(i));
+      const cap = el('span', 'capt', p.cap);
+      const inp = el('input', 'capin');
+      inp.type = 'text'; inp.value = p.cap; inp.maxLength = 50; inp.placeholder = 'tulis keterangan';
+      inp.addEventListener('input', () => { p.cap = inp.value; cap.textContent = p.cap; save(); });
+
+      const acts = el('div', 'acts');
+      const b1 = el('button', '', 'Ganti foto');
+      b1.addEventListener('click', () => replaceAt(i));
+      acts.appendChild(b1);
+      if (i > 0){
+        const b2 = el('button', '', 'Jadikan utama');
+        b2.addEventListener('click', () => { state.photos.unshift(state.photos.splice(i, 1)[0]); save(); render(); });
+        acts.appendChild(b2);
+      }
+      const b3 = el('button', '', 'Hapus');
+      b3.addEventListener('click', () => { state.photos.splice(i, 1); save(); render(); });
+      acts.appendChild(b3);
+
+      fig.append(img, cap, inp, acts);
+      m.appendChild(fig);
+    });
+  } else {
+    for (let i = 0; i < 12; i++){
+      const fig = el('figure', 'frame ph');
+      const img = pic(deco(i * 2 + 1));
+      img.addEventListener('click', askPhotos);
+      fig.appendChild(img);
+      m.appendChild(fig);
+    }
+  }
+}
+
+/* Perkecil foto supaya ringan dan muat di penyimpanan browser */
+function readPhoto(file){
+  return new Promise(resolve => {
+    const r = new FileReader();
+    r.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const s = Math.min(1, 900 / Math.max(img.width, img.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        resolve(c.toDataURL('image/jpeg', 0.78));
+      };
+      img.src = r.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+
+/* Kolom isian */
+[['iName','name'],['iFrom','from'],['iDate','date'],['iMsg','msg']].forEach(([id, k]) => {
+  const e = $(id); e.value = state[k];
+  e.addEventListener('input', () => { state[k] = e.value; save(); render(); });
+});
+$('addBtn').onclick = () => $('file').click();
+$('file').onchange = async e => {
+  for (const f of e.target.files){
+    if (f.type.startsWith('image/')) state.photos.push({ src: await readPhoto(f), cap: '' });
+  }
+  e.target.value = ''; save(); render();
+};
+$('fileOne').onchange = async e => {
+  const f = e.target.files[0];
+  if (f && f.type.startsWith('image/') && state.photos[repIdx]){
+    state.photos[repIdx].src = await readPhoto(f);
+    save(); render();
+  }
+  e.target.value = '';
+};
+$('randBtn').onclick = () => {
+  state.msg = quotes[Math.floor(Math.random() * quotes.length)];
+  $('iMsg').value = state.msg; save(); render();
+};
+$('clrBtn').onclick = () => {
+  if (state.photos.length && confirm('Hapus semua foto?')){ state.photos = []; save(); render(); }
+};
+
+/* Panel edit */
+function openPanel(){ $('panel').classList.add('open'); document.body.classList.add('editing'); }
+function closePanel(){ $('panel').classList.remove('open'); document.body.classList.remove('editing'); }
+$('editBtn').onclick = openPanel;
+$('closeBtn').onclick = closePanel;
+
+/* Kartu buka / tutup */
+const card = $('card');
+function setOpen(o){
+  card.classList.toggle('open', o);
+  $('toggle').textContent = o ? 'TUTUP KARTU' : 'BUKA KARTU';
+  $('cover').tabIndex = o ? -1 : 0;
+}
+$('cover').onclick = () => setOpen(true);
+$('toggle').onclick = () => setOpen(!card.classList.contains('open'));
+
+/* Lightbox dengan panah dan geser jari */
+const lb = $('lb'); let cur = 0;
+function showLb(){
+  const p = state.photos[cur];
+  lb.querySelector('img').src = p.src;
+  $('lbCap').textContent = (p.cap ? p.cap + '  ·  ' : '') + (cur + 1) + ' / ' + state.photos.length;
+}
+function openLb(i){ cur = i; showLb(); lb.classList.add('show'); }
+function step(d){ const n = state.photos.length; cur = (cur + d + n) % n; showLb(); }
+$('prev').onclick = e => { e.stopPropagation(); step(-1); };
+$('next').onclick = e => { e.stopPropagation(); step(1); };
+$('lbClose').onclick = () => lb.classList.remove('show');
+lb.onclick = e => { if (e.target === lb) lb.classList.remove('show'); };
+document.addEventListener('keydown', e => {
+  if (lb.classList.contains('show')){
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  }
+  if (e.key === 'Escape'){ lb.classList.remove('show'); closePanel(); }
+});
+let tx = 0;
+lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+});
+
+render();
+setOpen(false);
+</script>
+</body>
+</html>
